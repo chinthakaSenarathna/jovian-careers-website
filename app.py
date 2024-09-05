@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from jinja2.ext import debug
 
 app = Flask(__name__)
@@ -39,6 +39,10 @@ JOBS = [
 @app.route("/")
 def hello_world():
     return render_template('home.html', jobs=JOBS)
+
+@app.route("/jobs")
+def job_items():
+    return jsonify(JOBS)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
